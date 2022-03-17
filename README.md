@@ -57,3 +57,128 @@ $(venv) python -m pip install -r requirements.txt
 - In `requirements.txt` you'll see `django>=3.2,<4.0` -- this means I'm using the latest version of Django 3.2 since it's an LTS release.
 - You can use `venv/bin/python -m pip install -r requirements.txt` (mac/linux) or `venv\bin\python -m pip install -r requirements.txt` (windows)
 - `pip install ...` is not as reliable as `python -m pip install ...`
+
+### Step 5: Select a Database
+
+As of now, we have the following supported databases for this boilerplate code: `sqlite`, `mysql`, `postgres`
+
+#### `sqlite`
+
+No action needed. Django will managed sqlite for you.
+
+#### `mysql`
+
+To install Python client:
+
+```
+$(venv) python -m pip install mysqlclient
+```
+
+> If macOS, you must run `brew install mysql` (assuming you have [homebrew](https://brew.sh) installed)
+
+Be sure you add `mysqlclient` to `requirements.txt` like:
+
+```
+echo "mysqlclient" >> requirements.txt
+```
+
+> Using the double `>>` vs a single `>` is the difference between appending and overwriting respectively.
+
+#### `postgres`
+
+```
+$(venv) python -m pip install psycopg2
+```
+
+> You may need to use `python -m pip install psycopg2-binary` during development.
+
+Be sure you add `psycopg2` to `requirements.txt` like:
+
+```
+echo "psycopg2" >> requirements.txt
+```
+
+> Using the double `>>` vs a single `>` is the difference between appending and overwriting respectively.
+
+### Step 6: Setup your `.env`
+
+Create your `.env` file.
+
+```
+echo "" > .env
+```
+
+Below is an example of _development-ready_ `.env` file for this project. **ALWAYS** update these values when going into production.
+
+```
+# required keys
+DJANGO_SECRET_KEY=gy_1$n9zsaacs^a4a1&-i%e95fe&d3pa+e^@5s*tke*r1b%*cu
+DATABASE_BACKEND=postgres
+
+# mysql db setup
+MYSQL_DATABASE=cfeblog-m-db
+MYSQL_USER=cfeblog-m-user
+MYSQL_PASSWORD=RaSNF5H3ElCbDrGUGpdRSEx-IuDzkeHFL_S_QBuH5tk
+MYSQL_ROOT_PASSWORD=2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
+MYSQL_TCP_PORT=3007
+MYSQL_HOST=127.0.0.1
+
+# postgres db setup
+POSTGRES_DB=cfeblog-p-db
+POSTGRES_USER=cfeblog-m-user
+POSTGRES_PASSWORD=NwgFCimzL0Oqd539EYzsztY04uzw2jaVEIrH1OK2sz0
+POSTGRES_PORT=5431
+POSTGRES_HOST=localhost
+```
+
+To generate secrets use one of the following method(s):
+
+##### Use Django to create a one-off secret key (bookmark this [blog post](https://www.codingforentrepreneurs.com/blog/create-a-one-off-django-secret-key/)):
+
+```
+python -c 'from django.core.management.utils import get_random_secret_key; print(get_random_secret_key())'
+```
+
+This is the recommended method for creating the `DJANGO_SECRET_KEY`
+
+##### Use Python to create a url safe secret:
+
+```
+python -c "import secrets;print(secrets.token_urlsafe(32))"
+```
+
+### Step 6: Local Development with Docker Compose
+
+#### Using `mysql`
+
+```
+docker compose --profile mysql up
+```
+
+```
+docker compose --profile mysql down
+```
+
+Or detached mode
+
+```
+docker compose --profile mysql up -d
+docker compose --profile mysql down -d
+```
+
+#### Using `postgres`
+
+```
+docker compose --profile postgres up
+```
+
+```
+docker compose --profile postgres down
+```
+
+Or detached mode
+
+```
+docker compose --profile postgres up -d
+docker compose --profile postgres down -d
+```
