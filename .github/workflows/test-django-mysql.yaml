@@ -1,0 +1,58 @@
+name: Django & MySQL Tests
+
+# Controls when the workflow will run
+on:
+  # Allows you to call this workflow within another workflow
+  workflow_call:
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+  # Triggered based on the git event type
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+# A workflow run is made up of one or more jobs that can run sequentially or in parallel
+jobs:
+  # This workflow contains a single job called "build"
+  django_mysql:
+    # The type of runner that the job will run on
+    runs-on: ubuntu-latest
+    # Add in environment variables for the entire "build" job
+    env:
+      MYSQL_DATABASE: cfeblog-m-db
+      MYSQL_USER: root
+      MYSQL_ROOT_PASSWORD: 2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
+      MYSQL_TCP_PORT: 3306
+      MYSQL_HOST: 127.0.0.1
+      DJANGO_SECRET_KEY: test-key-not-good
+      DATABASE_BACKEND: mysql
+    services:
+      mysql_main:
+        image: mysql:8.0.26
+        ports:
+          - 3306:3306
+    # If you want to test multiple python version(s)
+    strategy:
+      matrix:
+        python-version: ["3.8", "3.9", "3.10"]
+    # Steps represent a sequence of tasks that will be executed as part of the job
+    steps:
+      # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
+      - name: Checkout code
+        uses: actions/checkout@v2
+      - name: Setup Python ${{ matrix.python-version }}
+        uses: actions/setup-python@v2
+        with:
+          python-version: ${{ matrix.python-version }}
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
+      - name: Run Tests
+        # Step specific environment variables
+        env:
+          DEBUG: "0"
+          DATABASE_BACKEND: ${{ env.DATABASE_BACKEND }}
+          DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
+        run: |
+          python manage.py test
