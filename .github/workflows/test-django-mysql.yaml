@@ -1,4 +1,4 @@
-name: Django & MySQL Tests
+name: MySQL for Django Tests
 
 # Controls when the workflow will run
 on:
