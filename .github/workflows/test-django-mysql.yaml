@@ -20,8 +20,8 @@ jobs:
     runs-on: ubuntu-latest
     # Add in environment variables for the entire "build" job
     env:
-      MYSQL_DATABASE: cfeblog-m-db
-      MYSQL_USER: root
+      MYSQL_DATABASE: cfeblog_db
+      MYSQL_USER: cfe_blog_user
       MYSQL_ROOT_PASSWORD: 2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
       MYSQL_TCP_PORT: 3306
       MYSQL_HOST: 127.0.0.1
