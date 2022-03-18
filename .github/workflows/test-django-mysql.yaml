@@ -24,7 +24,7 @@ jobs:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
       MYSQL_TCP_PORT: 3306
-      MYSQL_HOST: localhost
+      MYSQL_HOST: 127.0.0.1
       DJANGO_SECRET_KEY: test-key-not-good
       DATABASE_BACKEND: mysql
     services:
@@ -32,7 +32,7 @@ jobs:
         image: mysql:8.0.26
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping -h 127.0.0.1 --port 3007 -p ${{ env.MYSQL_ROOT_PASSWORD }}" --health-interval=10s --health-timeout=5s --health-retries=3
     # If you want to test multiple python version(s)
     strategy:
       matrix:
