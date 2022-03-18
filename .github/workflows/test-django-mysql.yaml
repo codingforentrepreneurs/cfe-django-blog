@@ -28,11 +28,17 @@ jobs:
       DJANGO_SECRET_KEY: test-key-not-good
       DATABASE_BACKEND: mysql
     services:
-      mysql_main:
-        image: mysql:8.0.26
+      mysql:
+        image: mysql:8.0
+        env:
+          MYSQL_DATABASE: ${{ env.MYSQL_DATABASE }}
+          MYSQL_HOST: ${{ env.MYSQL_HOST }}
+          MYSQL_USER: ${{ env.MYSQL_USER }}
+          MYSQL_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
+          MYSQL_ROOT_PASSWORD: ${{ env.MYSQL_ROOT_PASSWORD }}
         ports:
           - 3306:3306
-        options: --health-cmd="mysqladmin ping -h 127.0.0.1 --port 3007 -p ${{ env.MYSQL_ROOT_PASSWORD }}" --health-interval=10s --health-timeout=5s --health-retries=3
+        options: --health-cmd="mysqladmin ping" --health-interval=10s 
     # If you want to test multiple python version(s)
     strategy:
       matrix:
