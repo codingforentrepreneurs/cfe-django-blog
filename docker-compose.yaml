@@ -13,7 +13,6 @@ services:
       - mysql-volume:/var/lib/mysql
     profiles:
       - mysql
-
   postgres_db:
     image: postgres
     restart: always

@@ -151,36 +151,51 @@ python -c "import secrets;print(secrets.token_urlsafe(32))"
 
 ### Step 6: Local Development with Docker Compose
 
-#### Using `mysql`
+Running our local environment with the same type of database as our production database is critical. For this, we'll use Docker and Docker Compose.
+
+With Docker, your machine can have a _lot_ of instances of MySQL/Postgres/Redis running with minimal configuration. This is true for macOS, Windows, and nearly all distros of Linux that can run Docker.
+
+Without Docker, having more than 1 version of any of these running is a huge pain. A pain that _might_ be worth going through if you like to bleed from your eyes. It's also an uncessary pain because we're talking about the _development_ environment.
+
+Now on to the nitty gritty.
+
+In our `docker-compose.yaml` file, you'll see configuration for the services:
+
+- `mysql_db`
+- `postgres_db`
+- `redis_db`
+
+But wait, there is not a `web` service for Django in `docker-compose.yaml`... why not? Two reasons:
+
+- If you need it, you can add it.
+- If you're new to Python, Virtual Environments, Django, Docker, VSCode, Git, or whatever it makes things even more complex.
+
+If you're new to Docker compose, this might suck too. Sorry about that. But I hope you trust me that, in this case, the juice is worth the squeeze (aka it's worth the effort in learning how to use it).
+
+Since I wanted to support both `mysql` and `postgres` I wanted to make use of Docker Compose's [profiles](https://docs.docker.com/compose/profiles/) feature.
+
+Basicaly, you can use a profile to "activate" different services within a Docker compose file (instead of having a bunch of different Docker compose files).
+
+In our case, `docker-compose.yaml` has three profiles:
+
+- `mysql` (includes the `mysql_db` and `redis_db` services)
+- `postgres` (includes the `postgres_db` and `redis_db` services)
+- `redis` (runs only the `redis_db` service)
+
+To run any given profile you just do:
 
 ```
 docker compose --profile mysql up
 ```
 
-```
-docker compose --profile mysql down
-```
+> Just replace `--profile postgres` if you want to use that one.
 
-Or detached mode
+Also, keep in mind that some systems require you to use `docker-compose` instead of `docker compose`.
+
+I recommend running this profile in background mode (aka detached mode):
 
 ```
 docker compose --profile mysql up -d
-docker compose --profile mysql down -d
 ```
 
-#### Using `postgres`
-
-```
-docker compose --profile postgres up
-```
-
-```
-docker compose --profile postgres down
-```
-
-Or detached mode
-
-```
-docker compose --profile postgres up -d
-docker compose --profile postgres down -d
-```
+> Again, just replace `--profile postgres` if you want to use that one.
