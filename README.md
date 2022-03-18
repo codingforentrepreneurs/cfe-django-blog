@@ -4,6 +4,10 @@
 
 This is boilerplate code that you can use to learn how to bring Django into production.
 
+## TLDR;
+
+This is definitely coming soon -- basically a list of all commands to get this repo working locally.
+
 ## Getting Started
 
 ### Step 1: Fork / Clone
