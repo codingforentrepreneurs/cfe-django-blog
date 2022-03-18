@@ -21,10 +21,11 @@ jobs:
     # Add in environment variables for the entire "build" job
     env:
       MYSQL_DATABASE: cfeblog_db
-      MYSQL_USER: cfe_blog_user
+      MYSQL_USER: cfe_blog_user # do *not* use root; cannot re-create the root user
       MYSQL_ROOT_PASSWORD: 2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
       MYSQL_TCP_PORT: 3306
       MYSQL_HOST: 127.0.0.1
+      GITHUB_ACTIONS: true
       DJANGO_SECRET_KEY: test-key-not-good
       DATABASE_BACKEND: mysql
     services:
@@ -59,6 +60,7 @@ jobs:
         # Step specific environment variables
         env:
           DEBUG: "0"
+          MYSQL_USER: "root" # must use the root user on MySQL to run tests
           DATABASE_BACKEND: ${{ env.DATABASE_BACKEND }}
           DJANGO_SECRET_KEY: ${{ env.DJANGO_SECRET_KEY }}
         run: |
