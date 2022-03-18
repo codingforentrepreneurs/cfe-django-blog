@@ -36,7 +36,7 @@ python3.10 -m venv venv
 ```
 
 - I recommend Python 3.8 and up
-- You can use _any_ virtual enviornment manager (poetry, pipenv, virtualenv, etc)
+- You can use _any_ virtual environment manager (poetry, pipenv, virtualenv, etc)
 
 ### Step 3: Activate Virtual Environment
 
