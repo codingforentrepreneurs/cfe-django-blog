@@ -24,7 +24,7 @@ jobs:
       MYSQL_USER: root
       MYSQL_ROOT_PASSWORD: 2mLTcmdPzU2LOa0TpAlLPoNf1XtIKsKvNn5WBiszczs
       MYSQL_TCP_PORT: 3306
-      MYSQL_HOST: 127.0.0.1
+      MYSQL_HOST: localhost
       DJANGO_SECRET_KEY: test-key-not-good
       DATABASE_BACKEND: mysql
     services:
