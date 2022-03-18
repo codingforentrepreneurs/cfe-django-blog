@@ -25,6 +25,7 @@ jobs:
       POSTGRES_HOST: localhost # default host value for the database
       POSTGRES_DB: djtesting
       POSTGRES_PORT: 5432
+      GITHUB_ACTIONS: true
       DJANGO_SECRET_KEY: test-key-not-good
       DATABASE_BACKEND: postgres
     services:
