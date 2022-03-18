@@ -1,12 +1,15 @@
 django>=3.2,<4.0
 django-dotenv
 gunicorn
+# for formatting code
+black
+# for image file uploads in Django
+pillow
 
-# for mysql databases
+## for mysql databases
 mysqlclient 
 
 ## uncomment for postgresql databases
 # psycopg2
-
 ## only uncomment if `psycopg2` doesn't install 
 # psycopg2-binary 
