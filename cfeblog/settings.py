@@ -55,7 +55,9 @@ ROOT_URLCONF = "cfeblog.urls"
 TEMPLATES = [
     {
         "BACKEND": "django.template.backends.django.DjangoTemplates",
-        "DIRS": [],
+        "DIRS": [
+            BASE_DIR / "templates",
+        ],
         "APP_DIRS": True,
         "OPTIONS": {
             "context_processors": [
@@ -127,6 +129,7 @@ USE_TZ = True
 STATIC_URL = "/static/"
 STATIC_DIRS = [BASE_DIR / "staticfiles"]
 STATIC_ROOT = BASE_DIR / "staticroot"
+MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "mediafiles"
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field

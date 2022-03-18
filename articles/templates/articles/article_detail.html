@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+
+{% block head_title %}
+{{ article.title }} | Articles | {{ block.super }}
+{% endblock head_title %}
+
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 mx-auto col-md-8 col-12">
+            <h2>{{ article.title }}</h2>
+            {% if article.image %}
+            <img class="img-fluid" src="{{ article.get_image_url }}" alt="{{ article.image }}">
+            {% endif %}
+            <div>
+                {{ article.content|linebreaks }}
+            </div>
+        </div>
+    </div>
+</div>
+   
+{% endblock content %}
