@@ -1,4 +1,6 @@
 devops/
+
+devops/linode/terraform/backend
 staticroot/admin/
 # Byte-compiled / optimized / DLL files
 __pycache__/
