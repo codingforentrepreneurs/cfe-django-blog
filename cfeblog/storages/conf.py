@@ -2,7 +2,7 @@ import os
 
 DJANGO_STORAGE_SERVICE = os.environ.get("DJANGO_STORAGE_SERVICE")
 
-if DJANGO_STORAGE_SERVICE:
+if DJANGO_STORAGE_SERVICE is not None:
     """
     Set default options from django-storages 
     if DJANGO_STORAGE_SERVICE key exists
