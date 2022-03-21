@@ -1,11 +1,15 @@
 django>=3.2,<4.0
-django-dotenv
+## our production-grade webserver
 gunicorn
+## loading in environment variables
+django-dotenv
 # for formatting code
 black
-# for image file uploads in Django
+## for image file uploads in Django
 pillow
-
+## for leveraging 3rd party static/meida file servers
+boto3
+django-storages
 ## for mysql databases
 mysqlclient 
 
