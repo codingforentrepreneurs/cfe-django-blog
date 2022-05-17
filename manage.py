@@ -1,19 +1,11 @@
 #!/usr/bin/env python
 """Django's command-line utility for administrative tasks."""
 import os
-import pathlib
 import sys
 
-import dotenv
-
-BASE_DIR = pathlib.Path(__file__).resolve().parent
 
 def main():
     """Run administrative tasks."""
-    
-    ENV_PATH= BASE_DIR / '.env'
-    if ENV_PATH.exists():
-        dotenv.read_dotenv(str(ENV_PATH))
     os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'cfeblog.settings')
     try:
         from django.core.management import execute_from_command_line

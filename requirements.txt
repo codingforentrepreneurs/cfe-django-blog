@@ -2,7 +2,7 @@ django>=3.2,<4.0
 ## our production-grade webserver
 gunicorn
 ## loading in environment variables
-django-dotenv
+python-dotenv
 # for formatting code
 black
 ## for image file uploads in Django
