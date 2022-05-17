@@ -10,9 +10,9 @@ MYSQL_TCP_PORT = os.environ.get("MYSQL_TCP_PORT")
 MYSQL_DB_IS_AVAIL = all(
     [MYSQL_USER, MYSQL_PASSWORD, MYSQL_DATABASE, MYSQL_HOST, MYSQL_TCP_PORT]
 )
-MYSQL_DB_REQUIRE_SSL = os.environ.get("MYSQL_DB_IGNORE_SSL") == "true"
 
 if MYSQL_DB_IS_AVAIL:
+    # print("using mysql")
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.mysql",
@@ -23,5 +23,3 @@ if MYSQL_DB_IS_AVAIL:
             "PORT": MYSQL_TCP_PORT,
         }
     }
-    if MYSQL_DB_REQUIRE_SSL:
-        DATABASES["default"]["OPTIONS"] = {"sslmode": "require"}
