@@ -1,7 +1,5 @@
 # CFE Django Blog
 
-> THIS IS COMING SOON
-
 This is boilerplate code that you can use to learn how to bring Django into production.
 
 ## TLDR;
