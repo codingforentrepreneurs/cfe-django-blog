@@ -8,4 +8,5 @@
   "settings": {
     "python.defaultInterpreterPath": "venv/bin/python",
     "python.envFile": "${workspaceFolder}/.env"
+  }
 }
