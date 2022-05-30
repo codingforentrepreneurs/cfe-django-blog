@@ -7,20 +7,5 @@
   
   "settings": {
     "python.defaultInterpreterPath": "venv/bin/python",
-    "python.envFile": "${workspaceFolder}/.env",
-    "terminal.integrated.profiles.osx": {
-      "zsh (load dotenv)": {
-        "path": "zsh",
-        "args": ["-c", "export `cat ${workspaceFolder}/.env`; $SHELL"]
-      }
-    },
-    "terminal.integrated.defaultProfile.osx": "zsh (load dotenv)",
-    "terminal.integrated.profiles.linux": {
-      "bash (load dotenv)": {
-        "path": "bash",
-        "args": ["-c", "export `cat ${workspaceFolder}/.env`; $SHELL"]
-      }
-    },
-    "terminal.integrated.defaultProfile.linux": "bash (load dotenv)"
-  }
+    "python.envFile": "${workspaceFolder}/.env"
 }
