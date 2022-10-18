@@ -106,7 +106,7 @@ echo "psycopg2" >> requirements.txt
 
 ### Step 6: Setup your `.env`
 
-Create your `.env` file.
+Create your `.env` file (or reference the `.env-sample` in the repo).
 
 ```
 echo "" > .env
